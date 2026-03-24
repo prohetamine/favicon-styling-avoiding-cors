@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon styling avoiding cors</title>
+</head>
+<body>
+    <style>
+        body {
+            background: rgb(255, 255, 255);
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .gray {
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            border-radius: 9px;
+            background: #ddd;
+            z-index: 1;
+        }
+
+        .border {
+            background-size: 10000%;
+            background-position: 75% 75%;
+            width: 52px;
+            height: 52px;
+            position: absolute;
+            border-radius: 9px;
+            filter: brightness(0.8);
+            opacity: 0.9;
+            z-index: 2;
+        }
+        
+        .background {
+            width: 50px;
+            height: 50px;
+            background-size: 10000%;
+            background-position: 75% 75%;
+            opacity: 0.1;
+            filter: brightness(0.5);
+            border-radius: 8px;
+            position: absolute;
+            z-index: 4;
+        }
+
+        .white {
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            background-size: 10000%;
+            background-position: 75% 75%;
+            border-radius: 8px;
+            position: absolute;
+            z-index: 3;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            background-position: center center;
+            position: absolute;
+            border-radius: 6px;
+            z-index: 5;
+        }
+
+        #root {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+        }
+    </style>
+    <div id="root"></div>
+    <script>
+        const root = document.querySelector('#root')
+
+        const domains = [
+            'google.com',
+            'youtube.com',
+            'facebook.com',
+            'instagram.com',
+            'chatgpt.com',
+            'x.com',
+            'reddit.com',
+            'wikipedia.org',
+            'whatsapp.com',
+            'bing.com',
+            'tiktok.com',
+            'yahoo.co.jp',
+            'yandex.ru',
+            'yahoo.com',
+            'amazon.com',
+            'gemini.google.com',
+            'linkedin.com',
+            'baidu.com',
+            'naver.com',
+            'netflix.com',
+            'pinterest.com',
+            'live.com',
+            'bilibili.com',
+            'pornhub.com',
+            'temu.com',
+            'vk.com',
+            'mail.ru',
+            'duckduckgo.com',
+            'msn.com',
+            'apple.com',
+            'microsoft.com',
+            'ebay.com',
+            't.me',
+            'ok.ru',
+            'zoom.us',
+            'adobe.com',
+            'discord.com',
+            'twitter.com',
+            'tumblr.com',
+            'craigslist.org',
+            'office.com',
+            'stackoverflow.com',
+            'wordpress.com',
+            'aliexpress.com',
+            'imdb.com',
+            'paypal.com',
+            'espn.com',
+            'bbc.com',
+            'cnn.com',
+            'nytimes.com',
+            'weather.com',
+            'ft.com',
+            'forbes.com',
+            'shopify.com',
+            'etsy.com',
+            'whatsapp.net',
+            'twitch.tv',
+            'spotify.com',
+            'soundcloud.com',
+            'dropbox.com',
+            'quora.com',
+            'medium.com',
+            'slack.com',
+            'weibo.com',
+            'qq.com',
+            'sohu.com',
+            '360.cn',
+            'douyin.com',
+            'alibaba.com',
+            'walmart.com',
+            'target.com',
+            'etsy.com',
+            'hulu.com',
+            'dailymotion.com',
+            'roblox.com',
+            'kick.com',
+            'okta.com',
+            'github.com',
+            'gitlab.com',
+            'bitbucket.org',
+            'researchgate.net',
+            'trello.com',
+            'notion.so',
+            'coursera.org',
+            'udemy.com',
+            'khanacademy.org',
+            'britannica.com',
+            'archive.org',
+            'yelp.com',
+            'tripadvisor.com',
+            'booking.com',
+            'airbnb.com',
+            'uber.com',
+            'lyft.com',
+            'grab.com',
+            'indeed.com',
+            'glassdoor.com',
+            'monster.com',
+            'paypal.com',
+            'stripe.com',
+            'shop.com',
+            'dzen.ru',
+            'xhamster.com',
+            'office.com',
+            'fandom.com',
+            'news.yahoo.co.jp',
+            'canva.com',
+            'globo.com',
+            'stripchat.com',
+            'samsung.com',
+            'xnxx.com',
+            'dzen.news',
+            'ok.ru',
+            't.me',
+            'mail.ru',
+            'linkedin.com',
+            'nanaimo.com',
+            'bing.com',
+            'yahoo.co.jp',
+            'temu.com',
+            'pinterest.com',
+            'live.com',
+            'weather.com',
+            'twitch.tv',
+            'discord.com',
+            'reddit.com',
+            'netflix.com',
+            'vk.com',
+            'duckduckgo.com',
+            'ebay.com',
+            'imdb.com',
+            'spotify.com',
+            'soundcloud.com',
+            'dropbox.com',
+            'quora.com',
+            'medium.com',
+            'slack.com',
+            'sohu.com',
+            'qq.com',
+            '360.cn',
+            'douyin.com',
+            'alibaba.com',
+            'walmart.com',
+            'target.com',
+            'hulu.com',
+            'dailymotion.com',
+            'roblox.com',
+            'kick.com',
+            'okta.com',
+            'github.com',
+            'gitlab.com',
+            'bitbucket.org',
+            'researchgate.net',
+            'trello.com',
+            'notion.so',
+            'coursera.org',
+            'udemy.com',
+            'khanacademy.org',
+            'britannica.com',
+            'archive.org',
+            'yelp.com',
+            'tripadvisor.com',
+            'booking.com',
+            'airbnb.com',
+            'uber.com',
+            'lyft.com',
+            'grab.com',
+            'indeed.com',
+            'glassdoor.com',
+            'monster.com',
+            'stripe.com',
+            'shopify.com',
+            'etsy.com',
+            'temu.com',
+            'tiktok.com',
+            'instagram.com',
+            'facebook.com',
+            'youtube.com',
+            'google.com',
+            'wikipedia.org',
+            'chatgpt.com',
+            'x.com',
+            'whatsapp.com'
+        ]
+
+        for (let x = 0; x < domains.length; x++) {
+            const domain = domains[x]
+            const url = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=64`
+            root.innerHTML += `
+                <a class="card" href='https://${domain}'>
+                    <div class="gray"></div>
+                    <div class="border" style="background-image: url(${url});"></div>
+                    <div class="white"></div>
+                    <div class="background" style="background-image: url(${url});"></div>
+                    <div class="icon" style="background-image: url(${url});"></div>
+                </a>
+            `
+        }
+    </script>
+</body>
+</html>
