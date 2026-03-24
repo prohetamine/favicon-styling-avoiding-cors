@@ -1,1 +1,3 @@
+Due to the fact that CORS does not allow you to upload an image to the canvas and process it...
+
 View https://prohetamine.github.io/favicon-styling-avoiding-cors/
